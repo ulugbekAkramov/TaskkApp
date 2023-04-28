@@ -9,11 +9,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.geektech.taskkapp.R
-import com.geektech.taskkapp.data.remote.Pref
+import com.geektech.taskkapp.data.local.Pref
 import com.geektech.taskkapp.databinding.FragmentProfileBinding
 import com.geektech.taskkapp.ui.task.utils.loadImage
-import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileFragment : Fragment() {
 

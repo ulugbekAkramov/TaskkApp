@@ -1,12 +1,12 @@
-package com.geektech.taskkapp.data.remote
+package com.geektech.taskkapp.data.local
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.media.Image
 
 class Pref(private val context: Context) {
     private val pref: SharedPreferences = context.getSharedPreferences(TASK_PREF_NAME, MODE_PRIVATE)
+
 
     fun isUserSeen(): Boolean {
         return pref.getBoolean(USER_SEEN_KEY, false)

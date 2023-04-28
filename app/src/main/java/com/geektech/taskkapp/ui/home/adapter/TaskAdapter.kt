@@ -6,10 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geektech.taskkapp.databinding.ItemTaskBinding
 import com.geektech.taskkapp.model.Task
 
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onLongClick:(task: Task)->Unit) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 private val data = arrayListOf<Task>()
-    fun addTask(task: Task){
-        data.add(0,task)
+
+
+    fun deleteTask(task: Task){
+        data.remove(task)
+        notifyDataSetChanged()
+    }
+
+    fun addTasks(task: List<Task>){
+        data.clear()
+        data.addAll(task)
         notifyDataSetChanged()
 
     }
@@ -25,15 +33,21 @@ private val data = arrayListOf<Task>()
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(data.get(position))
+
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    class TaskViewHolder(private val binding: ItemTaskBinding) :
+    inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
+
+            itemView.setOnLongClickListener {
+                onLongClick(task)
+                true
+            }
             binding.tvTitle.text=task.title
             binding.tvDesk.text=task.desc
 
